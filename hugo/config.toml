@@ -1,0 +1,45 @@
+theme = "docuapi"
+publishdir="../docs"
+languageCode = "zh-CN"
+baseurl = "https://inwecrypto.github.io/mobilesdk/"
+title = "neo wallet mobile sdk"
+
+# Code higlighting settings
+pygmentsCodefences = true
+pygmentsCodeFencesGuesSsyntax = false
+pygmentsOptions = ""
+pygmentsStyle = "monokai"
+# The monokai stylesheet is included in the base template.
+pygmentsUseClasses = true
+
+defaultContentLanguage = "zhcn"
+
+[params]
+search = true
+  
+# Configure the language example tabs.
+[[params.language_tabs]]
+key = "java"
+name = "android" 
+[[params.language_tabs]]
+key = "objc"
+name = "iOS"
+
+#Languages 
+[languages]
+
+[languages.zhcn]
+languageName = "中文"
+weight = 2
+title = "NEO钱包SDK接口文档"
+
+# Left sidebar footer items. Use HTMl or Markdown.
+toc_footers = [ 
+"<a href='#'>Registrer deg for ein utviklarnøkkel</a>",
+"Dokumentasjonen er driven av [DocuAPI](https://github.com/bep/docuapi)",
+"Hugo Theme av [bep](https://github.com/bep)"
+]
+[languages.zhcn.blackfriday]
+angledQuotes = false
+hrefTargetBlank = true
+
