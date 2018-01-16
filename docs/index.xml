@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NEO钱包SDK接口文档</title>
+    <link>https://inwecrypto.github.io/mobilesdk/</link>
+    <description>Recent content on NEO钱包SDK接口文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="https://inwecrypto.github.io/mobilesdk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>API Reference</title>
+      <link>https://inwecrypto.github.io/mobilesdk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inwecrypto.github.io/mobilesdk/</guid>
+      <description>介绍 mobilesdk 是由gomobile编译的跨平台NEO/ETH钱包SDK当前支持的平台有：
+ iOS android  NEO钱包支持特性  全局资产转账 claim GAS WIF 导入 web3 keystore support NEP5合约资产转账 NEP5合约资产ICO（MintToken）  ETH钱包支持特性  全局资产转账 ERC20资产转账  该SDK并不涉及网络部分，需要对应平台自行处理</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>https://inwecrypto.github.io/mobilesdk/eth/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inwecrypto.github.io/mobilesdk/eth/</guid>
+      <description>ETH钱包 创建新的NEO钱包  创建新的NEO钱包:
+ package com.inwecrypto.test public class App { public static void main(String args[]) { ethmobile.Wallet wallet = ethmobile.new_(); } } 请求参数    Parameter Default Description      通过读取web3 keystore字符串创建钱包  读取keystore:
+ package com.inwecrypto.test public class App { public static void main(String args[]) { ethmobile.Wallet ethwallet = ethmobile.fromKeyStore(&amp;#34;xxxxxx&amp;#34;,&amp;#34;xxxxx&amp;#34;); } }  keystore的格式类似下面的json代码：
+ { &amp;#34;version&amp;#34;: 3, &amp;#34;id&amp;#34;: &amp;#34;1b3cb7fc-306f-4ec3-b753-831cb9e18984&amp;#34;, &amp;#34;address&amp;#34;: &amp;#34;00e773ad3fa1481bc4222277f324d57f35f06b60&amp;#34;, &amp;#34;crypto&amp;#34;: { &amp;#34;ciphertext&amp;#34;: &amp;#34;423abc4fea2f1f58543b456f9a67f60eb7be076a79471d284d2777c1ce5ee2cd&amp;#34;, &amp;#34;cipherparams&amp;#34;: { &amp;#34;iv&amp;#34;: &amp;#34;a737c70e4541a9eb053a49e9103d7ccc&amp;#34; }, &amp;#34;cipher&amp;#34;: &amp;#34;aes-128-ctr&amp;#34;, &amp;#34;kdf&amp;#34;: &amp;#34;pbkdf2&amp;#34;, &amp;#34;kdfparams&amp;#34;: { &amp;#34;dklen&amp;#34;: 32, &amp;#34;salt&amp;#34;: &amp;#34;0de73ba9540afa6424f05d159575a665da3aefa751cd7c56fc5dd87aeac4ea6b&amp;#34;, &amp;#34;c&amp;#34;: 65536, &amp;#34;prf&amp;#34;: &amp;#34;hmac-sha256&amp;#34; }, &amp;#34;mac&amp;#34;: &amp;#34;53b2cf7744e91d2718f9aa586dac8c5fb647b3b912b5c4ba3c1eafd7a99346e3&amp;#34; } } 请求参数    Parameter Type Description     keystore string keystore json 字符串   password string keystore 秘钥    通过助记词创建钱包  读取助记词:</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>https://inwecrypto.github.io/mobilesdk/neo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inwecrypto.github.io/mobilesdk/neo/</guid>
+      <description>NEO钱包 创建新钱包  创建新的NEO钱包:
+ package com.inwecrypto.test public class App { public static void main(String args[]) { neomobile.Wallet neowallet = neomobile.new_(); } } 请求参数    Parameter Default Description      通过WIF字符串创建钱包  通过WIF字符串创建钱包:
+ package com.inwecrypto.test public class App { public static void main(String args[]) { neomobile.Wallet neowallet = neomobile.fromWIF(&amp;#34;xxxxxx&amp;#34;); } } 请求参数    Parameter Type Description     wif string WIF字符串    通过读取web3 keystore字符串创建钱包  读取keystore:</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>https://inwecrypto.github.io/mobilesdk/rpc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inwecrypto.github.io/mobilesdk/rpc/</guid>
+      <description>neo-insight 加强版的 NEO jsonrpc 2.0 远程服务
+支持特性  获取用户可用资产列表 utxo 获取 claim utxo 列表用于 claim transaction 调用  所有扩展调用都位于/extend路径下面
+其它接口 注意 — NEO支持的标准RPC接口参考这里  获取用户可用资产列表  请求用户的资产utxo列表 :
+ { &amp;#34;jsonrpc&amp;#34;: &amp;#34;2.0&amp;#34;, &amp;#34;method&amp;#34;: &amp;#34;balance&amp;#34;, &amp;#34;params&amp;#34;: [&amp;#34;AMpupnF6QweQXLfCtF4dR45FDdKbTXkLsr&amp;#34;,&amp;#34;0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b&amp;#34;], &amp;#34;id&amp;#34;: 0 }  返回值 :
+ [ { &amp;#34;txid&amp;#34;: &amp;#34;0xc503927ac7541c45578e975d4971f2e5cad951f33a591bb59e9303548bf65fe3&amp;#34;, &amp;#34;vout&amp;#34;: { &amp;#34;Address&amp;#34;: &amp;#34;AMpupnF6QweQXLfCtF4dR45FDdKbTXkLsr&amp;#34;, &amp;#34;Asset&amp;#34;: &amp;#34;0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b&amp;#34;, &amp;#34;N&amp;#34;: 0, &amp;#34;Value&amp;#34;: &amp;#34;1&amp;#34; }, &amp;#34;createTime&amp;#34;: &amp;#34;2017-11-24T06:38:04Z&amp;#34;, &amp;#34;spentTime&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;block&amp;#34;: 811513, &amp;#34;spentBlock&amp;#34;: -1 } ] 请求参数    Parameter Type Description     address string neo 地址   asset string 资产id    返回值    Parameter Type Description     utxo object[] 未使用的utxo列表    获取Claim utxo列表  请求 :</description>
+    </item>
+    
+  </channel>
+</rss>
