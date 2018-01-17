@@ -1009,6 +1009,36 @@
 </tbody>
 </table>
 
+<h2 id="获取钱包公钥">获取钱包公钥</h2>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.inwecrypto.test</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="n">neomobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">neowallet</span> <span class="o">=</span> <span class="n">neomobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">);</span>
+
+        <span class="n">neowallet</span><span class="o">.</span><span class="na">PubKey</span><span class="o">()</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="返回值-6">返回值</h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pubkey</td>
+<td>string</td>
+<td>钱包公钥</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="neo地址转换为hash160格式">NEO地址转换为Hash160格式</h2>
 
 <blockquote>
@@ -1041,7 +1071,7 @@
 </tbody>
 </table>
 
-<h3 id="返回值-6">返回值</h3>
+<h3 id="返回值-7">返回值</h3>
 
 <table>
 <thead>
@@ -1093,7 +1123,7 @@
 </tbody>
 </table>
 
-<h3 id="返回值-7">返回值</h3>
+<h3 id="返回值-8">返回值</h3>
 
 <table>
 <thead>

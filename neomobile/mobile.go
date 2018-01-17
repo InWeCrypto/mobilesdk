@@ -278,6 +278,11 @@ func (wrapper *Wallet) CreateNep5Tx(asset string, from, to string, gas float64, 
 	}, err
 }
 
+// PubKey get public key string
+func (wrapper *Wallet) PubKey() string {
+	return hex.EncodeToString(wrapper.key.PrivateKey.PublicKey.X.Bytes())
+}
+
 func reverseBytes(s []byte) []byte {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]

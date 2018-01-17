@@ -442,6 +442,27 @@ Parameter | Type | Description
 tx | object | 包含 txid 以及 raw tx string
 
 
+## 获取钱包公钥
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        neomobile.Wallet neowallet = neomobile.fromMnemonic("xxxxxx");
+
+        neowallet.PubKey()
+    }
+}
+```
+
+### 返回值
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+pubkey | string | 钱包公钥
+
 ## NEO地址转换为Hash160格式
 
 > NEO address to Hash160:
