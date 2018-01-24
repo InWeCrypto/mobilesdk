@@ -101,6 +101,28 @@ Parameter | Type | Description
 mnemonic | string | 空格分割的助记词字符串
 lang | string | 助记词语言，当前支持 zh_CN ， en_US
 
+## 通过私钥创建钱包
+
+> 读取助记词:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromPrivateKey("xxxxxx");
+        ethwallet.Transfer("","","","","")
+    }
+}
+```
+
+### 请求参数
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+privateKey | string | hex形式私钥
+
 
 ## 全局资产转账（ETH)
 

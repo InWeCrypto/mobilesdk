@@ -30,6 +30,19 @@ func New() (*Wallet, error) {
 	}, nil
 }
 
+// FromPrivateKey .
+func FromPrivateKey(privateKey []byte) (*Wallet, error) {
+	key, err := keystore.KeyFromPrivateKey(privateKey)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &Wallet{
+		key: key,
+	}, nil
+}
+
 // FromMnemonic create wallet from mnemonic
 func FromMnemonic(mnemonic string, lang string) (*Wallet, error) {
 	dic, _ := bip39.GetDict(lang)
