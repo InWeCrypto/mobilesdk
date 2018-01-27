@@ -17,3 +17,4 @@ mobilesdk.framework
 mobilesdk-sources.jar
 mobilesdk.aar
 .DS_Store
+./build
