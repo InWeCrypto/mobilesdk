@@ -81,6 +81,28 @@ func FromKeyStore(ks string, password string) (*Wallet, error) {
 	}, nil
 }
 
+// Address get wallet address
+func (wallet *Wallet) Address() string {
+	return wallet.key.Address
+}
+
+// Mnemonic gete mnemonic string
+func (wallet *Wallet) Mnemonic(lang string) (string, error) {
+	privateKeyBytes := wallet.key.ToBytes()
+
+	dic, _ := bip39.GetDict(lang)
+
+	println(hex.EncodeToString(privateKeyBytes))
+
+	data, err := bip39.NewMnemonic(privateKeyBytes, dic)
+
+	if err != nil {
+		return "", err
+	}
+
+	return data, nil
+}
+
 // ToKeyStore write wallet to keystore format string
 func (wallet *Wallet) ToKeyStore(password string) (string, error) {
 	keystore, err := keystore.WriteLightScryptKeyStore(wallet.key, password)
@@ -122,6 +144,10 @@ func (wallet *Wallet) Transfer(nonce, to, amount, gasPrice, gasLimits string) (s
 		(*ethgo.Value)(gasPriceBigInt),
 		gasLimitsBigInt,
 		nil)
+
+	if err := rawTx.Sign(wallet.key.PrivateKey); err != nil {
+		return "", err
+	}
 
 	data, err := rawTx.Encode()
 
@@ -166,6 +192,10 @@ func (wallet *Wallet) TransferERC20(contract, nonce, to, amount, gasPrice, gasLi
 		(*ethgo.Value)(gasPriceBigInt),
 		gasLimitsBigInt,
 		codes)
+
+	if err := rawTx.Sign(wallet.key.PrivateKey); err != nil {
+		return "", err
+	}
 
 	data, err := rawTx.Encode()
 
