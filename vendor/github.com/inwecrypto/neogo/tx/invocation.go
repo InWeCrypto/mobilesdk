@@ -38,6 +38,14 @@ func (tx *InvocationTx) Tx() *Transaction {
 	return (*Transaction)(tx)
 }
 
+// CheckFromWitness .
+func (tx *InvocationTx) CheckFromWitness(fromScriptHash []byte) {
+	tx.Attributes = append(tx.Attributes, &Attribute{
+		Usage: Script,
+		Data:  fromScriptHash,
+	})
+}
+
 // CalcInputs .
 func (tx *InvocationTx) CalcInputs(outputs []*Vout, unspent []*rpc.UTXO) error {
 	invocation := tx.Extend.(*invocationTx)

@@ -8,7 +8,7 @@ import (
 	"io"
 
 	"github.com/apisit/rfc6979"
-	"github.com/inwecrypto/neogo"
+	"github.com/inwecrypto/neogo/script"
 )
 
 func publicKeyToBytes(pub *ecdsa.PublicKey) (b []byte) {
@@ -73,21 +73,25 @@ func (tx *Transaction) Sign(ecdsaPrivateKey *ecdsa.PrivateKey) ([]byte, string, 
 
 	var stackScriptBuffer bytes.Buffer
 
-	script := neogo.NewScriptWriter(&stackScriptBuffer)
+	signScript := script.New("test")
 
-	script.EmitPushBytes(sign)
+	signScript.EmitPushBytes(sign)
+
+	signScript.Write(&stackScriptBuffer)
 
 	stackScript := stackScriptBuffer.Bytes()
 
-	var redeemScriptBuffer bytes.Buffer
-
-	script.Reset(&redeemScriptBuffer)
-
 	address := publicKeyToBytes(&ecdsaPrivateKey.PublicKey)
 
-	script.
+	signScript.Reset()
+
+	signScript.
 		EmitPushBytes(address).
-		Emit(neogo.CHECKSIG, nil)
+		Emit(script.CHECKSIG, nil)
+
+	var redeemScriptBuffer bytes.Buffer
+
+	signScript.Write(&redeemScriptBuffer)
 
 	tx.Scripts = []*Scripts{
 		&Scripts{

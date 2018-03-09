@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"math/big"
 
-	"github.com/inwecrypto/neogo"
+	"github.com/inwecrypto/neogo/script"
 )
 
 // Contract neo nep5 contract object
@@ -23,19 +23,22 @@ func NewContract(scriptHash []byte) *Contract {
 // more detail visit website https://github.com/neo-project/proposals/blob/master/nep-5.mediawiki#trasfer
 func Transfer(scriptHash []byte, from []byte, to []byte, amount *big.Int) ([]byte, error) {
 	var buff bytes.Buffer
-	writer := neogo.NewScriptWriter(&buff)
+	transferScript := script.New("transfer")
+	// writer := neogo.NewScriptWriter(&buff)
 
-	writer.
+	transferScript.
 		EmitPushInteger(amount).
 		EmitPushBytes(to).
 		EmitPushBytes(from).
 		EmitPushInteger(big.NewInt(3)).
-		Emit(neogo.PACK, nil).
+		Emit(script.PACK, nil).
 		EmitPushString("transfer").
 		EmitAPPCall(scriptHash, false)
 
-	if nil != writer.Error {
-		return nil, writer.Error
+	err := transferScript.Write(&buff)
+
+	if err != nil {
+		return nil, err
 	}
 
 	return buff.Bytes(), nil
@@ -44,16 +47,16 @@ func Transfer(scriptHash []byte, from []byte, to []byte, amount *big.Int) ([]byt
 // MintToken .
 func MintToken(scriptHash []byte) ([]byte, error) {
 	var buff bytes.Buffer
-	writer := neogo.NewScriptWriter(&buff)
+	writer := script.New("mint")
 
 	writer.
 		EmitPushInteger(big.NewInt(0)).
-		Emit(neogo.PACK, nil).
+		Emit(script.PACK, nil).
 		EmitPushString("mintTokens").
 		EmitAPPCall(scriptHash, false)
 
-	if nil != writer.Error {
-		return nil, writer.Error
+	if err := writer.Write(&buff); err != nil {
+		return nil, err
 	}
 
 	return buff.Bytes(), nil

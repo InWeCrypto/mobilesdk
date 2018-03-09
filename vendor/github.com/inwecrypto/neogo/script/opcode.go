@@ -1,10 +1,8 @@
-package neogo
+package script
 
 import (
-	"encoding/binary"
+	"encoding/hex"
 	"fmt"
-	"io"
-	"math/big"
 )
 
 // OpCode script opcode
@@ -114,186 +112,113 @@ const (
 	THROWIFNOT             = 0xF1
 )
 
-// ScriptWriter neo script writer
-type ScriptWriter struct {
-	writer io.Writer
-	Error  error
-	depth  int
+var op2Strings = map[OpCode]string{
+	PUSH0:           "PUSH0      ",
+	PUSHBYTES1:      "PUSHBYTES1 ",
+	PUSHBYTES75:     "PUSHBYTES75",
+	PUSHDATA1:       "PUSHDATA1  ",
+	PUSHDATA2:       "PUSHDATA2  ",
+	PUSHDATA4:       "PUSHDATA4  ",
+	PUSHM1:          "PUSHM1     ",
+	PUSH1:           "PUSH1      ",
+	PUSH2:           "PUSH2      ",
+	PUSH3:           "PUSH3      ",
+	PUSH4:           "PUSH4      ",
+	PUSH5:           "PUSH5      ",
+	PUSH6:           "PUSH6      ",
+	PUSH7:           "PUSH7      ",
+	PUSH8:           "PUSH8      ",
+	PUSH9:           "PUSH9      ",
+	PUSH10:          "PUSH10     ",
+	PUSH11:          "PUSH11     ",
+	PUSH12:          "PUSH12     ",
+	PUSH13:          "PUSH13     ",
+	PUSH14:          "PUSH14     ",
+	PUSH15:          "PUSH15     ",
+	PUSH16:          "PUSH16     ",
+	NOP:             "NOP        ",
+	JMP:             "JMP        ",
+	JMPIF:           "JMPIF      ",
+	JMPIFNOT:        "JMPIFNOT   ",
+	CALL:            "CALL       ",
+	RET:             "RET        ",
+	APPCALL:         "APPCALL    ",
+	SYSCALL:         "SYSCALL    ",
+	TAILCALL:        "TAILCALL   ",
+	DUPFROMALTSTACK: "DUPFROMALTS",
+	TOALTSTACK:      "TOALTSTACK ",
+	FROMALTSTACK:    "FROMALTSTAC",
+	XDROP:           "XDROP      ",
+	XSWAP:           "XSWAP      ",
+	XTUCK:           "XTUCK      ",
+	DEPTH:           "DEPTH      ",
+	DROP:            "DROP       ",
+	DUP:             "DUP        ",
+	NIP:             "NIP        ",
+	OVER:            "OVER       ",
+	PICK:            "PICK       ",
+	ROLL:            "ROLL       ",
+	ROT:             "ROT        ",
+	SWAP:            "SWAP       ",
+	TUCK:            "TUCK       ",
+	CAT:             "CAT        ",
+	SUBSTR:          "SUBSTR     ",
+	LEFT:            "LEFT       ",
+	RIGHT:           "RIGHT      ",
+	SIZE:            "SIZE       ",
+	INVERT:          "INVERT     ",
+	AND:             "AND        ",
+	OR:              "OR         ",
+	XOR:             "XOR        ",
+	EQUAL:           "EQUAL      ",
+	INC:             "INC        ",
+	DEC:             "DEC        ",
+	SIGN:            "SIGN       ",
+	NEGATE:          "NEGATE     ",
+	ABS:             "ABS        ",
+	NOT:             "NOT        ",
+	NZ:              "NZ         ",
+	ADD:             "ADD        ",
+	SUB:             "SUB        ",
+	MUL:             "MUL        ",
+	DIV:             "DIV        ",
+	MOD:             "MOD        ",
+	SHL:             "SHL        ",
+	SHR:             "SHR        ",
+	BOOLAND:         "BOOLAND    ",
+	BOOLOR:          "BOOLOR     ",
+	NUMEQUAL:        "NUMEQUAL   ",
+	NUMNOTEQUAL:     "NUMNOTEQUAL",
+	LT:              "LT         ",
+	GT:              "GT         ",
+	LTE:             "LTE        ",
+	GTE:             "GTE        ",
+	MIN:             "MIN        ",
+	MAX:             "MAX        ",
+	WITHIN:          "WITHIN     ",
+	SHA1:            "SHA1       ",
+	SHA256:          "SHA256     ",
+	HASH160:         "HASH160    ",
+	HASH256:         "HASH256    ",
+	CHECKSIG:        "CHECKSIG   ",
+	CHECKMULTISIG:   "CHECKMULTIS",
+	ARRAYSIZE:       "ARRAYSIZE  ",
+	PACK:            "PACK       ",
+	UNPACK:          "UNPACK     ",
+	PICKITEM:        "PICKITEM   ",
+	SETITEM:         "SETITEM    ",
+	NEWARRAY:        "NEWARRAY   ",
+	NEWSTRUCT:       "NEWSTRUCT  ",
+	THROW:           "THROW      ",
+	THROWIFNOT:      "THROWIFNOT ",
 }
 
-// NewScriptWriter create new script writer
-func NewScriptWriter(writer io.Writer) *ScriptWriter {
-	return &ScriptWriter{
-		writer: writer,
-	}
+// Op .
+type Op struct {
+	Code OpCode
+	Arg  []byte
 }
 
-// Emit .
-func (writer *ScriptWriter) Emit(opcode OpCode, arg []byte) *ScriptWriter {
-	if writer.Error != nil {
-		return writer
-	}
-
-	if arg != nil {
-		writer.writer.Write(append([]byte{byte(opcode)}, arg...))
-	} else {
-		writer.writer.Write([]byte{byte(opcode)})
-	}
-
-	writer.depth++
-
-	return writer
-}
-
-// EmitAPPCall .
-func (writer *ScriptWriter) EmitAPPCall(scriptHash []byte, tailCall bool) *ScriptWriter {
-	if len(scriptHash) != 20 {
-		writer.Error = fmt.Errorf("[%d] EmitAPPCall scriptHash length must be 20 bytes", writer.depth)
-		return writer
-	}
-
-	if tailCall {
-		return writer.Emit(TAILCALL, scriptHash)
-	}
-
-	return writer.Emit(APPCALL, scriptHash)
-}
-
-// EmitJump .
-func (writer *ScriptWriter) EmitJump(op OpCode, offset int16) *ScriptWriter {
-	if op != JMP && op != JMPIF && op != JMPIFNOT && op != CALL {
-		writer.Error = fmt.Errorf("[%d] EmitAPPCall scriptHash length must be 20 bytes", writer.depth)
-		return writer
-	}
-
-	data := make([]byte, 2)
-
-	binary.LittleEndian.PutUint16(data, uint16(offset))
-
-	writer.Emit(op, data)
-
-	return writer
-}
-
-// EmitPushInteger .
-func (writer *ScriptWriter) EmitPushInteger(number *big.Int) *ScriptWriter {
-	if number.Int64() == -1 {
-		return writer.Emit(PUSHM1, nil)
-	}
-
-	if number.Int64() == 0 {
-		return writer.Emit(PUSH0, nil)
-	}
-
-	if number.Int64() > 0 && number.Int64() <= 16 {
-		return writer.Emit(OpCode(byte(PUSH1)-1+byte(number.Int64())), nil)
-	}
-
-	data := reverseBytes(number.Bytes())
-
-	return writer.EmitPushBytes(data)
-}
-
-func reverseBytes(s []byte) []byte {
-	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
-		s[i], s[j] = s[j], s[i]
-	}
-
-	return s
-}
-
-// EmitPushBool .
-func (writer *ScriptWriter) EmitPushBool(data bool) *ScriptWriter {
-	if data {
-		return writer.Emit(PUSHT, nil)
-	}
-
-	return writer.Emit(PUSHF, nil)
-}
-
-// EmitPushString .
-func (writer *ScriptWriter) EmitPushString(data string) *ScriptWriter {
-	return writer.EmitPushBytes([]byte(data))
-}
-
-// EmitPushBytes .
-func (writer *ScriptWriter) EmitPushBytes(data []byte) *ScriptWriter {
-
-	if writer.Error != nil {
-		return writer
-	}
-
-	if data == nil {
-		writer.Error = fmt.Errorf("[%d] EmitPushBytes args can't be null", writer.depth)
-		return writer
-	}
-
-	if len(data) < int(PUSHBYTES75) {
-		return writer.Emit(OpCode(len(data)), data)
-	}
-
-	if len(data) < int(0x100) {
-		writer.Emit(PUSHDATA1, nil)
-		writer.writer.Write([]byte{byte(len(data))})
-		writer.writer.Write(data)
-
-		writer.depth++
-
-		return writer
-	}
-
-	if len(data) < int(0x10000) {
-		writer.Emit(PUSHDATA2, nil)
-		bytesOfLength := make([]byte, 2)
-
-		binary.LittleEndian.PutUint16(bytesOfLength, uint16(len(data)))
-
-		writer.writer.Write(bytesOfLength)
-		writer.writer.Write(data)
-
-		writer.depth++
-
-		return writer
-	}
-
-	writer.Emit(PUSHDATA4, nil)
-
-	bytesOfLength := make([]byte, 4)
-
-	binary.LittleEndian.PutUint32(bytesOfLength, uint32(len(data)))
-
-	writer.writer.Write(bytesOfLength)
-	writer.writer.Write(data)
-
-	writer.depth++
-
-	return writer
-}
-
-// EmitSysCall .
-func (writer *ScriptWriter) EmitSysCall(api string) *ScriptWriter {
-	if api == "" {
-		writer.Error = fmt.Errorf("[%d] EmitSysCall api parameter can't be empty", writer.depth)
-	}
-
-	bytesOfAPI := []byte(api)
-
-	if len(bytesOfAPI) > 252 {
-		writer.Error = fmt.Errorf("[%d] EmitSysCall api name can't longer than 252", writer.depth)
-	}
-
-	return writer.Emit(SYSCALL, append([]byte{byte(len(bytesOfAPI))}, bytesOfAPI...))
-}
-
-// Offset .
-func (writer *ScriptWriter) Offset() int {
-	return writer.depth
-}
-
-// Reset reset script buffer
-func (writer *ScriptWriter) Reset(newwriter io.Writer) *ScriptWriter {
-	writer.depth = 0
-	writer.Error = nil
-	writer.writer = newwriter
-	return writer
+func (op *Op) String() string {
+	return fmt.Sprintf("%s\n%s", op2Strings[op.Code], hex.EncodeToString(op.Arg))
 }

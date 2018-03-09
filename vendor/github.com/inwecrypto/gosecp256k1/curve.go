@@ -37,7 +37,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"./math"
+	"github.com/inwecrypto/ethgo/math"
 )
 
 /*
