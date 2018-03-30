@@ -11,7 +11,7 @@ import (
 type ClaimTx Transaction
 
 type claimTx struct {
-	inputs []*Vin
+	Inputs []*Vin `json:"inputs"`
 }
 
 // NewClaimTx .
@@ -56,7 +56,7 @@ func (tx *ClaimTx) Claim(amount float64, to string, claims []*rpc.UTXO) error {
 	}
 
 	tx.Extend = &claimTx{
-		inputs: inputs,
+		Inputs: inputs,
 	}
 
 	tx.Outputs = []*Vout{
@@ -72,13 +72,13 @@ func (tx *ClaimTx) Claim(amount float64, to string, claims []*rpc.UTXO) error {
 
 func (tx *claimTx) Write(writer io.Writer) error {
 
-	length := Varint(len(tx.inputs))
+	length := Varint(len(tx.Inputs))
 
 	if err := length.Write(writer); err != nil {
 		return err
 	}
 
-	for _, vin := range tx.inputs {
+	for _, vin := range tx.Inputs {
 		if err := (*Vin)(vin).Write(writer); err != nil {
 			return err
 		}
@@ -101,7 +101,7 @@ func (tx *claimTx) Read(reader io.Reader) error {
 			return err
 		}
 
-		tx.inputs = append(tx.inputs, &vin)
+		tx.Inputs = append(tx.Inputs, &vin)
 	}
 
 	return nil

@@ -242,6 +242,10 @@ func calcTxInput(amount float64, asset string, unspent []*rpc.UTXO) ([]*rpc.UTXO
 	selected := make([]*rpc.UTXO, 0)
 	vinvalue := float64(0)
 
+	if amount == 0 {
+		return selected, vinvalue, nil
+	}
+
 	for _, utxo := range unspent {
 
 		if utxo.Vout.Asset != asset {
@@ -485,8 +489,14 @@ func (attr *Attribute) Write(writer io.Writer) error {
 		return err
 	}
 
-	if !(attr.Usage <= ECDH03 || attr.Usage == Vote || (attr.Usage <= Hash15 && attr.Usage >= Hash1)) {
-		_, err := writer.Write([]byte{byte(len(attr.Data))})
+	if attr.Usage == DescriptionURL {
+		if _, err := writer.Write([]byte{byte(len(attr.Data))}); err != nil {
+			return err
+		}
+	} else if attr.Usage == Description || attr.Usage > Remark {
+		length := Varint(len(attr.Data))
+
+		length.Write(writer)
 
 		if err != nil {
 			return err

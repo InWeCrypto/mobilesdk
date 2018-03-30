@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"math/big"
 	"strings"
+	"time"
 
 	"github.com/inwecrypto/bip39"
 	"github.com/inwecrypto/neogo/keystore"
@@ -203,7 +204,19 @@ func (wrapper *Wallet) MintToken(asset string, gas, amount float64, unspent stri
 		return nil, err
 	}
 
-	tx := neotx.NewInvocationTx(script, gas)
+	from := neotx.ToInvocationAddress(wrapper.key.Address)
+
+	bytesOfFrom, err := hex.DecodeString(from)
+
+	if err != nil {
+		return nil, err
+	}
+
+	bytesOfFrom = reverseBytes(bytesOfFrom)
+
+	nonce, _ := time.Now().MarshalBinary()
+
+	tx := neotx.NewInvocationTx(script, gas, bytesOfFrom, nonce)
 
 	vout := []*neotx.Vout{
 		&neotx.Vout{
@@ -262,7 +275,9 @@ func (wrapper *Wallet) CreateNep5Tx(asset string, from, to string, gas float64, 
 
 	script, err := nep5.Transfer(scriptHash, bytesOfFrom, bytesOfTo, big.NewInt(amount))
 
-	tx := neotx.NewInvocationTx(script, gas)
+	nonce, _ := time.Now().MarshalBinary()
+
+	tx := neotx.NewInvocationTx(script, gas, bytesOfFrom, nonce)
 
 	err = tx.CalcInputs(nil, utxos)
 
