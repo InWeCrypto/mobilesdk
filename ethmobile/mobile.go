@@ -8,6 +8,7 @@ import (
 	"github.com/inwecrypto/bip39"
 	"github.com/inwecrypto/ethgo"
 	"github.com/inwecrypto/ethgo/erc20"
+	"github.com/inwecrypto/ethgo/erc721"
 	"github.com/inwecrypto/ethgo/keystore"
 	"github.com/inwecrypto/ethgo/tx"
 )
@@ -113,13 +114,51 @@ func (wallet *Wallet) ToKeyStore(password string) (string, error) {
 // Transfer transfer eth to target address
 func (wallet *Wallet) Transfer(nonce, to, amount, gasPrice, gasLimits string) (string, error) {
 
-	nonceBigInt, err := readBigint(nonce)
+	amountBigInt, err := readBigint(amount)
 
 	if err != nil {
 		return "", err
 	}
 
-	amountBigInt, err := readBigint(amount)
+	return wallet.createTxData(to, nonce, gasPrice, gasLimits, (*ethgo.Value)(amountBigInt), nil)
+}
+
+// TransferERC20 transfer eth to target address
+func (wallet *Wallet) TransferERC20(contract, nonce, to, amount, gasPrice, gasLimits string) (string, error) {
+
+	codes, err := erc20.Transfer(to, amount)
+
+	if err != nil {
+		return "", err
+	}
+
+	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
+}
+
+func (wallet *Wallet) TransferFromERC821(contract, nonce, from, to, amount, gasPrice, gasLimits string) (string, error) {
+
+	codes, err := erc721.TransferFrom(from, to, amount)
+
+	if err != nil {
+		return "", err
+	}
+
+	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
+}
+
+func (wallet *Wallet) TransferLand(contract, nonce, to, x, y, gasPrice, gasLimits string) (string, error) {
+
+	codes, err := erc721.TransferLand(to, x, y)
+
+	if err != nil {
+		return "", err
+	}
+
+	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
+}
+
+func (wallet *Wallet) createTxData(to, nonce, gasPrice, gasLimits string, amount *ethgo.Value, codes []byte) (string, error) {
+	nonceBigInt, err := readBigint(nonce)
 
 	if err != nil {
 		return "", err
@@ -140,55 +179,7 @@ func (wallet *Wallet) Transfer(nonce, to, amount, gasPrice, gasLimits string) (s
 	rawTx := tx.NewTx(
 		nonceBigInt.Uint64(),
 		to,
-		(*ethgo.Value)(amountBigInt),
-		(*ethgo.Value)(gasPriceBigInt),
-		gasLimitsBigInt,
-		nil)
-
-	if err := rawTx.Sign(wallet.key.PrivateKey); err != nil {
-		return "", err
-	}
-
-	data, err := rawTx.Encode()
-
-	if err != nil {
-		return "", err
-	}
-
-	return hex.EncodeToString(data), nil
-}
-
-// TransferERC20 transfer eth to target address
-func (wallet *Wallet) TransferERC20(contract, nonce, to, amount, gasPrice, gasLimits string) (string, error) {
-
-	codes, err := erc20.Transfer(to, amount)
-
-	if err != nil {
-		return "", err
-	}
-
-	nonceBigInt, err := readBigint(nonce)
-
-	if err != nil {
-		return "", err
-	}
-
-	gasPriceBigInt, err := readBigint(gasPrice)
-
-	if err != nil {
-		return "", err
-	}
-
-	gasLimitsBigInt, err := readBigint(gasLimits)
-
-	if err != nil {
-		return "", err
-	}
-
-	rawTx := tx.NewTx(
-		nonceBigInt.Uint64(),
-		contract,
-		nil,
+		amount,
 		(*ethgo.Value)(gasPriceBigInt),
 		gasLimitsBigInt,
 		codes)
