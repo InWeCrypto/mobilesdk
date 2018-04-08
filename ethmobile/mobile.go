@@ -135,7 +135,18 @@ func (wallet *Wallet) TransferERC20(contract, nonce, to, amount, gasPrice, gasLi
 	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
 }
 
-func (wallet *Wallet) TransferFromERC821(contract, nonce, from, to, amount, gasPrice, gasLimits string) (string, error) {
+func (wallet *Wallet) ApproveERC721(contract, nonce, to, amount, gasPrice, gasLimits string) (string, error) {
+
+	codes, err := erc721.Approve(to, amount)
+
+	if err != nil {
+		return "", err
+	}
+
+	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
+}
+
+func (wallet *Wallet) TransferFromERC721(contract, nonce, from, to, amount, gasPrice, gasLimits string) (string, error) {
 
 	codes, err := erc721.TransferFrom(from, to, amount)
 
