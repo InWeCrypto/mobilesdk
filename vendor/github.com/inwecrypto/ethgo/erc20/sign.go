@@ -9,20 +9,24 @@ import (
 )
 
 const (
-	signBalanceOf   = "balanceOf(address)"
-	signTotalSupply = "totalSupply()"
-	signTransfer    = "transfer(address,uint256)"
-	eventTransfer   = "Transfer(address,address,uint256)"
-	initWallet      = "initWallet(address[],uint256,uint256)"
-	decimals        = "decimals()"
+	signBalanceOf    = "balanceOf(address)"
+	signTotalSupply  = "totalSupply()"
+	signTransfer     = "transfer(address,uint256)"
+	eventTransfer    = "Transfer(address,address,uint256)"
+	initWallet       = "initWallet(address[],uint256,uint256)"
+	decimals         = "decimals()"
+	signTransferFrom = "transferFrom(address,address,uint256)"
+	signApprove      = "approve(address,uint256)"
 )
 
 // Method/Event id
 var (
-	TransferID   = SignABI(signTransfer)
-	BalanceOfID  = SignABI(signBalanceOf)
-	InitWalletID = SignABI(initWallet)
-	Decimals     = SignABI(decimals)
+	TransferID     = SignABI(signTransfer)
+	BalanceOfID    = SignABI(signBalanceOf)
+	InitWalletID   = SignABI(initWallet)
+	Decimals       = SignABI(decimals)
+	TransferFromID = SignABI(signTransferFrom)
+	ApproveID      = SignABI(signApprove)
 )
 
 // SignABI sign abi string
@@ -47,7 +51,7 @@ func GetDecimals() string {
 }
 
 func packNumeric(value string, bytes int) string {
-	value = strings.TrimSuffix(value, "0x")
+	value = strings.TrimPrefix(value, "0x")
 
 	chars := bytes * 2
 
@@ -60,11 +64,31 @@ func packNumeric(value string, bytes int) string {
 
 // Transfer .
 func Transfer(to string, value string) ([]byte, error) {
-	to = packNumeric(strings.TrimPrefix(to, "0x"), 32)
-	value = packNumeric(strings.TrimPrefix(value, "0x"), 32)
+	to = packNumeric(to, 32)
+	value = packNumeric(value, 32)
 
 	data := fmt.Sprintf("%s%s%s", SignABI(signTransfer), to, value)
-	println(data)
+
+	return hex.DecodeString(data)
+}
+
+// TransferFrom .
+func TransferFrom(from, to string, value string) ([]byte, error) {
+	from = packNumeric(from, 32)
+	to = packNumeric(to, 32)
+	value = packNumeric(value, 32)
+
+	data := fmt.Sprintf("%s%s%s%s", TransferFromID, from, to, value)
+
+	return hex.DecodeString(data)
+}
+
+// Approve .
+func Approve(to string, value string) ([]byte, error) {
+	to = packNumeric(to, 32)
+	value = packNumeric(value, 32)
+
+	data := fmt.Sprintf("%s%s%s", ApproveID, to, value)
 
 	return hex.DecodeString(data)
 }
