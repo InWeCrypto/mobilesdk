@@ -456,20 +456,51 @@ func (attr *Attribute) Read(reader io.Reader) error {
 
 	var body []byte
 
-	if attr.Usage <= ECDH03 || attr.Usage == Vote || (attr.Usage <= Hash15 && attr.Usage >= Hash1) {
+	if attr.Usage == ContractHash || attr.Usage == Vote || (attr.Usage >= Hash1 && attr.Usage <= Hash15) {
 		body = make([]byte, 32)
-	} else {
-		var length byte
-		_, err = reader.Read([]byte{length})
 
-		if err != nil {
+		if _, err := reader.Read(body); err != nil {
+			return err
+		}
+	} else if attr.Usage == Script {
+		body = make([]byte, 20)
+
+		if _, err := reader.Read(body); err != nil {
+			return err
+		}
+	} else if attr.Usage == ECDH02 || attr.Usage == ECDH03 {
+		body = make([]byte, 32)
+
+		if _, err := reader.Read(body); err != nil {
+			return err
+		}
+
+		body = append([]byte{attr.Usage}, body...)
+	} else if attr.Usage == DescriptionURL {
+		len := make([]byte, 1)
+
+		if _, err := reader.Read(len); err != nil {
+			return err
+		}
+
+		body = make([]byte, len[0])
+
+		if _, err := reader.Read(body); err != nil {
+			return err
+		}
+	} else if attr.Usage == Description || attr.Usage >= Remark {
+		var length Varint
+
+		if err := length.Read(reader); err != nil {
 			return err
 		}
 
 		body = make([]byte, length)
-	}
 
-	_, err = reader.Read(body)
+		if _, err := reader.Read(body); err != nil {
+			return err
+		}
+	}
 
 	if err != nil {
 		return err

@@ -241,7 +241,7 @@ func (wrapper *Wallet) MintToken(asset string, gas, amount float64, unspent stri
 }
 
 // CreateNep5Tx create nep5 transfer transaction
-func (wrapper *Wallet) CreateNep5Tx(asset string, from, to string, gas float64, amount int64, unspent string) (*Tx, error) {
+func (wrapper *Wallet) CreateNep5Tx(asset string, from, to string, amount int64, unspent string) (*Tx, error) {
 
 	var utxos []*rpc.UTXO
 
@@ -277,7 +277,7 @@ func (wrapper *Wallet) CreateNep5Tx(asset string, from, to string, gas float64, 
 
 	nonce, _ := time.Now().MarshalBinary()
 
-	tx := neotx.NewInvocationTx(script, gas, bytesOfFrom, nonce)
+	tx := neotx.NewInvocationTx(script, 0, bytesOfFrom, nonce)
 
 	err = tx.CalcInputs(nil, utxos)
 

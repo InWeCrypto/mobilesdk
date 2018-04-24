@@ -7,6 +7,24 @@ import (
 	"github.com/inwecrypto/neogo/script"
 )
 
+// ParameterType .
+type ParameterType byte
+
+// Parameter Type enum
+const (
+	Signature ParameterType = 0
+	Boolean
+	Integer
+	Hash160
+	Hash256
+	ByteArray
+	PublicKey
+	String
+	Array
+	InteropInterface
+	Void
+)
+
 // Contract neo nep5 contract object
 type Contract struct {
 	scriptHash []byte
@@ -60,4 +78,9 @@ func MintToken(scriptHash []byte) ([]byte, error) {
 	}
 
 	return buff.Bytes(), nil
+}
+
+// DeployContract .
+func DeployContract(script []byte, parmeters []ParameterType) ([]byte, error) {
+	return nil, nil
 }
