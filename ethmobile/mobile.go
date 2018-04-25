@@ -15,7 +15,8 @@ import (
 
 // Wallet neo mobile wallet
 type Wallet struct {
-	key *keystore.Key
+	key     *keystore.Key
+	EthCall *EthCall
 }
 
 // New create a new wallet
@@ -27,7 +28,8 @@ func New() (*Wallet, error) {
 	}
 
 	return &Wallet{
-		key: key,
+		key:     key,
+		EthCall: &EthCall{},
 	}, nil
 }
 
@@ -135,9 +137,9 @@ func (wallet *Wallet) TransferERC20(contract, nonce, to, amount, gasPrice, gasLi
 	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
 }
 
-func (wallet *Wallet) ApproveERC721(contract, nonce, to, amount, gasPrice, gasLimits string) (string, error) {
+func (wallet *Wallet) Approve(contract, nonce, to, value, gasPrice, gasLimits string) (string, error) {
 
-	codes, err := erc721.Approve(to, amount)
+	codes, err := erc20.Approve(to, value)
 
 	if err != nil {
 		return "", err
@@ -146,9 +148,9 @@ func (wallet *Wallet) ApproveERC721(contract, nonce, to, amount, gasPrice, gasLi
 	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
 }
 
-func (wallet *Wallet) TransferFromERC721(contract, nonce, from, to, amount, gasPrice, gasLimits string) (string, error) {
+func (wallet *Wallet) TransferFrom(contract, nonce, from, to, value, gasPrice, gasLimits string) (string, error) {
 
-	codes, err := erc721.TransferFrom(from, to, amount)
+	codes, err := erc20.TransferFrom(from, to, value)
 
 	if err != nil {
 		return "", err
@@ -160,17 +162,6 @@ func (wallet *Wallet) TransferFromERC721(contract, nonce, from, to, amount, gasP
 func (wallet *Wallet) TransferLand(contract, nonce, to, x, y, gasPrice, gasLimits string) (string, error) {
 
 	codes, err := erc721.TransferLand(to, x, y)
-
-	if err != nil {
-		return "", err
-	}
-
-	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
-}
-
-func (wallet *Wallet) ApproveERC20(contract, nonce, to, value, gasPrice, gasLimits string) (string, error) {
-
-	codes, err := erc20.Approve(to, value)
 
 	if err != nil {
 		return "", err

@@ -43,16 +43,16 @@
 			"revisionTime": "2018-03-08T09:10:26Z"
 		},
 		{
-			"checksumSHA1": "tnmzS9V+sfd+FWLLIQegLC3W00c=",
+			"checksumSHA1": "NOoDk9WnU9wJ54LzvDjrDX/bj2k=",
 			"path": "github.com/inwecrypto/ethgo/erc20",
-			"revision": "a5eb17444263994f670f4addad62a3386fcb3fa3",
-			"revisionTime": "2018-04-24T03:28:19Z"
+			"revision": "f51ccd61cb2d3c7847d8cdecb54db0f5c8308d3c",
+			"revisionTime": "2018-04-25T03:15:57Z"
 		},
 		{
-			"checksumSHA1": "EmHhJ2OmFXIIjvWon31wibTPKoI=",
+			"checksumSHA1": "wZJgy9JwZ0qJAObHuVRrhfX7dxk=",
 			"path": "github.com/inwecrypto/ethgo/erc721",
-			"revision": "a5eb17444263994f670f4addad62a3386fcb3fa3",
-			"revisionTime": "2018-04-24T03:28:19Z"
+			"revision": "f51ccd61cb2d3c7847d8cdecb54db0f5c8308d3c",
+			"revisionTime": "2018-04-25T03:15:57Z"
 		},
 		{
 			"checksumSHA1": "cXwu4k4NckaC+ddyxE861D8ANSk=",

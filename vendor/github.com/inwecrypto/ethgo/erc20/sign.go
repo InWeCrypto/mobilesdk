@@ -12,21 +12,24 @@ const (
 	signBalanceOf    = "balanceOf(address)"
 	signTotalSupply  = "totalSupply()"
 	signTransfer     = "transfer(address,uint256)"
-	eventTransfer    = "Transfer(address,address,uint256)"
-	initWallet       = "initWallet(address[],uint256,uint256)"
-	decimals         = "decimals()"
 	signTransferFrom = "transferFrom(address,address,uint256)"
 	signApprove      = "approve(address,uint256)"
+	signName         = "name()"
+	signSymbol       = "symbol()"
+	signAllowance    = "allowance(address,address)"
+	eventTransfer    = "Transfer(address,address,uint256)"
+	decimals         = "decimals()"
 )
 
 // Method/Event id
 var (
 	TransferID     = SignABI(signTransfer)
 	BalanceOfID    = SignABI(signBalanceOf)
-	InitWalletID   = SignABI(initWallet)
 	Decimals       = SignABI(decimals)
 	TransferFromID = SignABI(signTransferFrom)
 	ApproveID      = SignABI(signApprove)
+	TotalSupplyID  = SignABI(signTotalSupply)
+	AllowanceID    = SignABI(signAllowance)
 )
 
 // SignABI sign abi string
@@ -40,14 +43,26 @@ func SignABI(abi string) string {
 
 // BalanceOf create erc20 balanceof abi string
 func BalanceOf(address string) string {
-	address = strings.Trim(address, "0x")
+	address = packNumeric(address, 32)
 
-	return fmt.Sprintf("0x%s%s", BalanceOfID, packNumeric(address, 32))
+	return fmt.Sprintf("0x%s%s", BalanceOfID, address)
 }
 
 // GetDecimals .
 func GetDecimals() string {
 	return fmt.Sprintf("0x%s", Decimals)
+}
+
+func GetTotalSupply() string {
+	return fmt.Sprintf("0x%s", TotalSupplyID)
+}
+
+func GetName() string {
+	return "0x" + SignABI(signName)
+}
+
+func GetSignSymbol() string {
+	return "0x" + SignABI(signSymbol)
 }
 
 func packNumeric(value string, bytes int) string {
@@ -89,6 +104,15 @@ func Approve(to string, value string) ([]byte, error) {
 	value = packNumeric(value, 32)
 
 	data := fmt.Sprintf("%s%s%s", ApproveID, to, value)
+
+	return hex.DecodeString(data)
+}
+
+func Allowance(from, to string) ([]byte, error) {
+	from = packNumeric(from, 32)
+	to = packNumeric(to, 32)
+
+	data := fmt.Sprintf("%s%s%s", AllowanceID, to, to)
 
 	return hex.DecodeString(data)
 }
