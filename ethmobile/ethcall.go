@@ -121,6 +121,12 @@ func (self *EthCall) RedPacketTaxCost(contract string) (string, error) {
 	return self.Call(contract, data)
 }
 
+func (self *EthCall) RedPacketMaxCount(contract string) (string, error) {
+	data := erc721.MaxCount()
+
+	return self.Call(contract, data)
+}
+
 func (self *EthCall) RedPacketDetail(contract string, value string) (string, error) {
 	data := erc721.GetRedPacketDetail(value)
 

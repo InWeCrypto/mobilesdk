@@ -42,6 +42,7 @@ const (
 	RedPacket_getRedPacketDetail = "getRedPacketDetail(uint256)"
 	RedPacket_sendEther          = "sendEther(uint256)"
 	RedPacket_taxCost            = "taxCost()"
+	RedPacket_maxCount           = "maxCount()"
 )
 
 // Method/Event id
@@ -177,8 +178,11 @@ func OwnerOfLand(x, y string) string {
 }
 
 func TaxCost() string {
-
 	return "0x" + SignABI(RedPacket_taxCost)
+}
+
+func MaxCount() string {
+	return "0x" + SignABI(RedPacket_maxCount)
 }
 
 func SetTaxCost(value string) ([]byte, error) {
