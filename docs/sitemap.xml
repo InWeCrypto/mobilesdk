@@ -7,18 +7,6 @@
   </url>
   
   <url>
-    <loc>https://inwecrypto.github.io/mobilesdk/eth/</loc>
-  </url>
-  
-  <url>
-    <loc>https://inwecrypto.github.io/mobilesdk/neo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://inwecrypto.github.io/mobilesdk/rpc/</loc>
-  </url>
-  
-  <url>
     <loc>https://inwecrypto.github.io/mobilesdk/categories/</loc>
     <priority>0</priority>
   </url>
