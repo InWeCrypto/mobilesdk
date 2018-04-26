@@ -11,6 +11,10 @@ import (
 type EthCall struct {
 }
 
+func NewEthCall() *EthCall {
+	return &EthCall{}
+}
+
 func (self *EthCall) Call(contract string, data string) (string, error) {
 	site := rpc.CallSite{
 		To:   contract,

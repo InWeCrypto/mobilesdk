@@ -15,8 +15,7 @@ import (
 
 // Wallet neo mobile wallet
 type Wallet struct {
-	key     *keystore.Key
-	EthCall *EthCall
+	key *keystore.Key
 }
 
 // New create a new wallet
@@ -28,8 +27,7 @@ func New() (*Wallet, error) {
 	}
 
 	return &Wallet{
-		key:     key,
-		EthCall: &EthCall{},
+		key: key,
 	}, nil
 }
 
