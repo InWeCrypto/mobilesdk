@@ -183,7 +183,7 @@ gasLimits | string | 燃料最高限额
 
 ## ERC20代币授权
 
-> 授权:
+> 示例:
 
 ```java
 package com.inwecrypto.test
@@ -211,7 +211,7 @@ gasLimits | string | 燃料最高限额
 
 ## ERC20代币第三方转账，需要转出地址先授权
 
-> 授权:
+> 示例:
 
 ```java
 package com.inwecrypto.test
@@ -240,7 +240,7 @@ gasLimits | string | 燃料最高限额
 
 ## NFT代币DecentraLand Land转账接口
 
-> 授权:
+> 示例:
 
 ```java
 package com.inwecrypto.test
@@ -269,7 +269,7 @@ gasLimits | string | 燃料最高限额
 
 ## NFT代币红包 新红包接口，需要转出地址先授权
 
-> 授权:
+> 示例:
 
 ```java
 package com.inwecrypto.test
@@ -296,3 +296,418 @@ count | string | 红包个数
 command | string | 领取红包的口令（目前都设置为0）
 gasPrice | string | 燃料费价格
 gasLimits | string | 燃料最高限额
+
+## 获取ERC20代币的Decimals
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.Decimals("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | ERC20代币合约地址
+
+## 获取ERC20代币的Decimals
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.Decimals("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | ERC20代币合约地址
+
+## 获取ERC20代币的TotalSupply
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.TotalSupply("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | ERC20代币合约地址
+
+## 获取ERC20代币的Name
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.Name("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | ERC20代币合约地址
+
+## 获取ERC20代币的余额
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.BalanceOf("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | ERC20代币合约地址
+address  | string | 地址
+
+## NFT代币DecentraLand 解码tokenID
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.LandDecodeTokenId("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+value  | string | tokenID
+
+## NFT代币DecentraLand 编码tokenID
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.LandEncodeTokenId("","","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+x  | string | x坐标值
+y  | string | y坐标值
+
+## NFT代币DecentraLand LandData
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.LandData("","","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+x  | string | x坐标值
+y  | string | y坐标值
+
+## NFT代币DecentraLand 查询地址所拥有的土地
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.LandOf("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+address  | string | 地址
+
+## NFT代币DecentraLand 查询土地的拥有者地址
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.OwnerOfLand("","","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+x  | string | x坐标值
+y  | string | y坐标值
+
+## NFT代币DecentraLand的描述信息
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.Description("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+
+## NFT代币 地址所持有的所有资产
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.TokensOf("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+address  | string | 地址
+
+## NFT代币 代币是否存在
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.Exists("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+value  | string | 代币
+
+## NFT代币 代币元数据
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.TokenMetadata("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+value  | string | 代币
+
+## NFT代币 根据持有者的索引查询代币
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.TokenOfOwnerByIndex("","","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+address  | string | 地址
+value  | string | 索引编码
+
+## NFT代币 查询代币持有者地址
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.OwnerOf("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+value  | string | 代币
+
+## NFT代币 发放每个红包的手续费
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.RedPacketTaxCost("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+
+## NFT代币 最大可以发放多少个红包
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.RedPacketMaxCount("")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+
+## NFT代币 红包的详情
+
+> 示例:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.EthCall.RedPacketDetail("","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract  | string | 合约地址
+value  | string | 红包ID
