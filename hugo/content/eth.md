@@ -306,8 +306,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.Decimals("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.Decimals("");
     }
 }
 ```
@@ -318,26 +318,6 @@ Parameter | Type | Description
 --------- | ---- | -----------
 contract  | string | ERC20代币合约地址
 
-## 获取ERC20代币的Decimals
-
-> 示例:
-
-```java
-package com.inwecrypto.test
-
-public class App {
-    public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.Decimals("")
-    }
-}
-```
-
-### 请求参数
-
-Parameter | Type | Description
---------- | ---- | -----------
-contract  | string | ERC20代币合约地址
 
 ## 获取ERC20代币的TotalSupply
 
@@ -348,8 +328,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.TotalSupply("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.TotalSupply("");
     }
 }
 ```
@@ -369,8 +349,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.Name("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.Name("");
     }
 }
 ```
@@ -390,8 +370,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.BalanceOf("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.BalanceOf("","");
     }
 }
 ```
@@ -412,8 +392,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.LandDecodeTokenId("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.LandDecodeTokenId("","");
     }
 }
 ```
@@ -434,8 +414,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.LandEncodeTokenId("","","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.LandEncodeTokenId("","","");
     }
 }
 ```
@@ -457,8 +437,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.LandData("","","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.LandData("","","");
     }
 }
 ```
@@ -480,8 +460,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.LandOf("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.LandOf("","");
     }
 }
 ```
@@ -502,8 +482,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.OwnerOfLand("","","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.OwnerOfLand("","","");
     }
 }
 ```
@@ -525,8 +505,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.Description("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.Description("");
     }
 }
 ```
@@ -546,8 +526,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.TokensOf("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.TokensOf("","");
     }
 }
 ```
@@ -568,8 +548,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.Exists("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.Exists("","");
     }
 }
 ```
@@ -590,8 +570,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.TokenMetadata("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.TokenMetadata("","");
     }
 }
 ```
@@ -612,8 +592,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.TokenOfOwnerByIndex("","","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.TokenOfOwnerByIndex("","","");
     }
 }
 ```
@@ -635,8 +615,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.OwnerOf("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.OwnerOf("","");
     }
 }
 ```
@@ -657,8 +637,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.RedPacketTaxCost("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.RedPacketTaxCost("");
     }
 }
 ```
@@ -678,8 +658,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.RedPacketMaxCount("")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.RedPacketMaxCount("");
     }
 }
 ```
@@ -699,8 +679,8 @@ package com.inwecrypto.test
 
 public class App {
     public static void main(String args[]) {
-        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.EthCall.RedPacketDetail("","")
+        ethmobile.EthCall call = ethmobile.NewEthCall();
+        call.RedPacketDetail("","");
     }
 }
 ```
