@@ -8,9 +8,9 @@ title: API Reference
 
 
 
-## 创建新的NEO钱包
+## 创建新的ETH钱包
 
-> 创建新的NEO钱包:
+> 创建新的ETH钱包:
 
 
 ```java
@@ -146,8 +146,8 @@ public class App {
 Parameter | Type | Description
 --------- | ---- | -----------
 nonce | string | 服务器获取的nonce
-to | string | 助记词语言，当前支持 zh_CN ， en_US
-amount | string | 助记词语言，当前支持 zh_CN ， en_US
+to | string | 转入地址
+amount | string | 转入数量
 gasPrice | string | 燃料费价格
 gasLimits | string | 燃料最高限额
 
@@ -176,7 +176,123 @@ Parameter | Type | Description
 --------- | ---- | -----------
 contract | string | 合约地址
 nonce | string | 服务器获取的nonce
-to | string | 助记词语言，当前支持 zh_CN ， en_US
-amount | string | 助记词语言，当前支持 zh_CN ， en_US
+to | string | 转入地址
+amount | string | 转入数量
+gasPrice | string | 燃料费价格
+gasLimits | string | 燃料最高限额
+
+## ERC20代币授权
+
+> 授权:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.Approve("","","","","","")
+    }
+}
+```
+
+
+### 请求参数
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract | string | 合约地址
+nonce | string | 服务器获取的nonce
+to | string | 授权地址
+value | string | 授权额度
+gasPrice | string | 燃料费价格
+gasLimits | string | 燃料最高限额
+
+## ERC20代币第三方转账，需要转出地址先授权
+
+> 授权:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.TransferFrom("","","","","","","")
+    }
+}
+```
+
+
+### 请求参数
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract | string | 合约地址
+nonce | string | 服务器获取的nonce
+from | string | 转出地址
+to | string | 转入地址
+value | string | 数量
+gasPrice | string | 燃料费价格
+gasLimits | string | 燃料最高限额
+
+## NFT代币DecentraLand Land转账接口
+
+> 授权:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.TransferLand("","","","","","","")
+    }
+}
+```
+
+
+### 请求参数
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+contract | string | 合约地址
+nonce | string | 服务器获取的nonce
+to | string | 转入地址
+x | string | 土地X坐标
+y | string | 土地Y坐标
+gasPrice | string | 燃料费价格
+gasLimits | string | 燃料最高限额
+
+## NFT代币红包 新红包接口，需要转出地址先授权
+
+> 授权:
+
+```java
+package com.inwecrypto.test
+
+public class App {
+    public static void main(String args[]) {
+        ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
+        ethwallet.NewRedPacket("","","","","","","","","","")
+    }
+}
+```
+
+### 请求参数
+
+Parameter | Type | Description
+--------- | ---- | -----------
+redcontract | string | NFT红包合约地址
+nonce | string | 服务器获取的nonce
+erc20contract  | string | 要发红包的ERC20代币合约地址
+from | string | 转出地址
+amount | string | 发红包收取的手续费
+value | string | 红包中包含的ERC20代币总数
+count | string | 红包个数
+command | string | 领取红包的口令（目前都设置为0）
 gasPrice | string | 燃料费价格
 gasLimits | string | 燃料最高限额
