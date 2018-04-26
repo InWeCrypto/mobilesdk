@@ -324,7 +324,7 @@ public class App {
     public static void main(String args[]) {
         neomobile.Wallet neowallet = neomobile.fromMnemonic("xxxxxx");
 
-        neowallet.CreateNep5Tx("script hash","from address","to address",10.1,1000,unspent)
+        neowallet.CreateNep5Tx("script hash","from address","to address",1000,unspent)
     }
 }
 ```
@@ -366,7 +366,6 @@ Parameter | Type | Description
 scritpHash | string | nep5 合约地址
 from | string | 转账源地址
 to | string | 转账目标地址
-gas| float64| 转账消耗的gas费用
 amount| int64| 转账代币数目
 unspent|json|当前账户可用全局资产列表
 
