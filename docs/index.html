@@ -674,44 +674,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">Decimals</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">Decimals</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
 <h3 id="请求参数-10">请求参数</h3>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>contract</td>
-<td>string</td>
-<td>ERC20代币合约地址</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="获取erc20代币的decimals-1">获取ERC20代币的Decimals</h2>
-
-<blockquote>
-<p>示例:</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.inwecrypto.test</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">Decimals</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
-<h3 id="请求参数-11">请求参数</h3>
 
 <table>
 <thead>
@@ -740,11 +707,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">TotalSupply</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">TotalSupply</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-12">请求参数</h3>
+<h3 id="请求参数-11">请求参数</h3>
 
 <table>
 <thead>
@@ -773,11 +740,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">Name</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">Name</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-13">请求参数</h3>
+<h3 id="请求参数-12">请求参数</h3>
 
 <table>
 <thead>
@@ -806,11 +773,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">BalanceOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">BalanceOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-14">请求参数</h3>
+<h3 id="请求参数-13">请求参数</h3>
 
 <table>
 <thead>
@@ -845,11 +812,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">LandDecodeTokenId</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">LandDecodeTokenId</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-15">请求参数</h3>
+<h3 id="请求参数-14">请求参数</h3>
 
 <table>
 <thead>
@@ -884,11 +851,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">LandEncodeTokenId</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">LandEncodeTokenId</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-16">请求参数</h3>
+<h3 id="请求参数-15">请求参数</h3>
 
 <table>
 <thead>
@@ -929,11 +896,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">LandData</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">LandData</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-17">请求参数</h3>
+<h3 id="请求参数-16">请求参数</h3>
 
 <table>
 <thead>
@@ -974,11 +941,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">LandOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">LandOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-18">请求参数</h3>
+<h3 id="请求参数-17">请求参数</h3>
 
 <table>
 <thead>
@@ -1013,11 +980,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">OwnerOfLand</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">OwnerOfLand</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-19">请求参数</h3>
+<h3 id="请求参数-18">请求参数</h3>
 
 <table>
 <thead>
@@ -1058,11 +1025,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">Description</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">Description</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-20">请求参数</h3>
+<h3 id="请求参数-19">请求参数</h3>
 
 <table>
 <thead>
@@ -1091,11 +1058,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">TokensOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">TokensOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-21">请求参数</h3>
+<h3 id="请求参数-20">请求参数</h3>
 
 <table>
 <thead>
@@ -1130,11 +1097,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">Exists</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">Exists</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-22">请求参数</h3>
+<h3 id="请求参数-21">请求参数</h3>
 
 <table>
 <thead>
@@ -1169,11 +1136,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">TokenMetadata</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">TokenMetadata</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-23">请求参数</h3>
+<h3 id="请求参数-22">请求参数</h3>
 
 <table>
 <thead>
@@ -1208,11 +1175,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">TokenOfOwnerByIndex</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">TokenOfOwnerByIndex</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-24">请求参数</h3>
+<h3 id="请求参数-23">请求参数</h3>
 
 <table>
 <thead>
@@ -1253,11 +1220,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">OwnerOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">OwnerOf</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-25">请求参数</h3>
+<h3 id="请求参数-24">请求参数</h3>
 
 <table>
 <thead>
@@ -1292,11 +1259,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">RedPacketTaxCost</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">RedPacketTaxCost</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-26">请求参数</h3>
+<h3 id="请求参数-25">请求参数</h3>
 
 <table>
 <thead>
@@ -1325,11 +1292,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">RedPacketMaxCount</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">RedPacketMaxCount</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-27">请求参数</h3>
+<h3 id="请求参数-26">请求参数</h3>
 
 <table>
 <thead>
@@ -1358,11 +1325,11 @@
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-        <span class="n">ethmobile</span><span class="o">.</span><span class="na">Wallet</span> <span class="n">ethwallet</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">fromMnemonic</span><span class="o">(</span><span class="s">&#34;xxxxxx&#34;</span><span class="o">,</span><span class="s">&#34;zh_CN&#34;</span><span class="o">);</span>
-        <span class="n">ethwallet</span><span class="o">.</span><span class="na">EthCall</span><span class="o">.</span><span class="na">RedPacketDetail</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+        <span class="n">ethmobile</span><span class="o">.</span><span class="na">EthCall</span> <span class="n">call</span> <span class="o">=</span> <span class="n">ethmobile</span><span class="o">.</span><span class="na">NewEthCall</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">RedPacketDetail</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="请求参数-28">请求参数</h3>
+<h3 id="请求参数-27">请求参数</h3>
 
 <table>
 <thead>
