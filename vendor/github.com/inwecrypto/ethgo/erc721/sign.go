@@ -32,17 +32,17 @@ const (
 	DecentraLand_ownerOfLand   = "ownerOfLand(int,int)"
 
 	// RedPacket
-	RedPacket_newRedPacket       = "newRedPacket(address,address,uint256,uint256,uint256)"
-	RedPacket_open               = "open(uint256,address,uint256)"
-	RedPacket_openMany           = "openMany(uint256,address[],uint256)"
-	RedPacket_takeBack           = "takeBack(uint256)"
-	RedPacket_setTaxCost         = "setTaxCost(uint256)"
-	RedPacket_changeWallet       = "changeWallet(address)"
-	RedPacket_changeMaxCount     = "changeMaxCount(uint256)"
-	RedPacket_getRedPacketDetail = "getRedPacketDetail(uint256)"
-	RedPacket_sendEther          = "sendEther(uint256)"
-	RedPacket_taxCost            = "taxCost()"
-	RedPacket_maxCount           = "maxCount()"
+	RedPacket_newRedPacket           = "newRedPacket(uint256,address,address,uint256,uint256,uint256)"
+	RedPacket_openMany               = "openMany(uint256,address[],uint256,bool)"
+	RedPacket_takeBack               = "takeBack(uint256)"
+	RedPacket_setTaxCost             = "setTaxCost(uint256,uint256)"
+	RedPacket_changeWallet           = "changeWallet(address)"
+	RedPacket_changeMaxCount         = "changeMaxCount(uint256)"
+	RedPacket_getRedPacketOpenDetail = "getRedPacketOpenDetail(uint256)"
+	RedPacket_getRedPacketStatus     = "getRedPacketStatus(uint256)"
+	RedPacket_sendEther              = "sendEther(uint256)"
+	RedPacket_getTaxCost             = "getTaxCost()"
+	RedPacket_maxCount               = "maxCount()"
 )
 
 // Method/Event id
@@ -100,6 +100,10 @@ func GetTokenMetadata(value string) string {
 }
 
 func packNumeric(value string, bytes int) string {
+	if value == "" {
+		value = "0x0"
+	}
+
 	value = strings.TrimPrefix(value, "0x")
 
 	chars := bytes * 2
@@ -178,15 +182,15 @@ func OwnerOfLand(x, y string) string {
 }
 
 func TaxCost() string {
-	return "0x" + SignABI(RedPacket_taxCost)
+	return "0x" + SignABI(RedPacket_getTaxCost)
 }
 
 func MaxCount() string {
 	return "0x" + SignABI(RedPacket_maxCount)
 }
 
-func SetTaxCost(value string) ([]byte, error) {
-	data := SignABI(RedPacket_setTaxCost) + packNumeric(value, 32)
+func SetTaxCost(min, max string) ([]byte, error) {
+	data := SignABI(RedPacket_setTaxCost) + packNumeric(min, 32) + packNumeric(max, 32)
 
 	return hex.DecodeString(data)
 }
@@ -203,15 +207,22 @@ func ChangeMaxCount(value string) ([]byte, error) {
 	return hex.DecodeString(data)
 }
 
-func GetRedPacketDetail(value string) string {
-	data := "0x" + SignABI(RedPacket_getRedPacketDetail) + packNumeric(value, 32)
+func GetRedPacketStatus(value string) string {
+	data := "0x" + SignABI(RedPacket_getRedPacketStatus) + packNumeric(value, 32)
 
 	return data
 }
 
-func NewRedPacket(address, from string, value, count, cmd string) ([]byte, error) {
+func GetRedPacketOpenDetail(value string) string {
+	data := "0x" + SignABI(RedPacket_getRedPacketOpenDetail) + packNumeric(value, 32)
+
+	return data
+}
+
+func NewRedPacket(tokenId, address, from string, value, count, cmd string) ([]byte, error) {
 
 	data := SignABI(RedPacket_newRedPacket) +
+		packNumeric(tokenId, 32) +
 		packNumeric(address, 32) +
 		packNumeric(from, 32) +
 		packNumeric(value, 32) +
@@ -221,24 +232,20 @@ func NewRedPacket(address, from string, value, count, cmd string) ([]byte, error
 	return hex.DecodeString(data)
 }
 
-func Open(tokeId, address string, cmd string) ([]byte, error) {
+func OpenMany(tokeId string, addresses []string, cmd string, end bool) ([]byte, error) {
+	endStr := "0x0"
 
-	data := SignABI(RedPacket_open) +
-		packNumeric(tokeId, 32) +
-		packNumeric(address, 32) +
-		packNumeric(cmd, 32)
+	if end {
+		endStr = "0x1"
+	}
 
-	return hex.DecodeString(data)
-}
-
-func OpenMany(tokeId string, addresses []string, cmd string) ([]byte, error) {
-
-	start := hex.EncodeToString(big.NewInt(96).Bytes())
+	start := hex.EncodeToString(big.NewInt(128).Bytes())
 
 	data := SignABI(RedPacket_openMany) +
 		packNumeric(tokeId, 32) +
 		packNumeric(start, 32) +
 		packNumeric(cmd, 32) +
+		packNumeric(endStr, 32) +
 		encodeStrings(addresses)
 
 	return hex.DecodeString(data)
@@ -263,7 +270,7 @@ func encodeStrings(params []string) string {
 
 	lenStr := hex.EncodeToString(length.Bytes())
 
-	codes := packNumeric(lenStr, 64)
+	codes := packNumeric(lenStr, 32)
 
 	for _, v := range params {
 		codes += packNumeric(v, 32)

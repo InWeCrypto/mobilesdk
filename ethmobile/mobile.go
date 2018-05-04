@@ -168,10 +168,10 @@ func (wallet *Wallet) TransferLand(contract, nonce, to, x, y, gasPrice, gasLimit
 	return wallet.createTxData(contract, nonce, gasPrice, gasLimits, nil, codes)
 }
 
-func (wallet *Wallet) NewRedPacket(redcontract, nonce, erc20contract, from, amount, value, count, command, gasPrice, gasLimits string) (string, error) {
+func (wallet *Wallet) NewRedPacket(redcontract, nonce, erc20contract, tokenId, from, amount, value, count, command, gasPrice, gasLimits string) (string, error) {
 	amountBigInt, err := readBigint(amount)
 
-	codes, err := erc721.NewRedPacket(erc20contract, from, value, count, command)
+	codes, err := erc721.NewRedPacket(tokenId, erc20contract, from, value, count, command)
 
 	if err != nil {
 		return "", err

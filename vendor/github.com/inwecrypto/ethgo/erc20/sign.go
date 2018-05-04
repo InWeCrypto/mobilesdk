@@ -66,6 +66,10 @@ func GetSignSymbol() string {
 }
 
 func packNumeric(value string, bytes int) string {
+	if value == "" {
+		value = "0x0"
+	}
+
 	value = strings.TrimPrefix(value, "0x")
 
 	chars := bytes * 2

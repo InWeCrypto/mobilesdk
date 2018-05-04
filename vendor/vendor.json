@@ -43,16 +43,16 @@
 			"revisionTime": "2018-03-08T09:10:26Z"
 		},
 		{
-			"checksumSHA1": "NOoDk9WnU9wJ54LzvDjrDX/bj2k=",
+			"checksumSHA1": "EsSya5kf1XT/qIPD9RZ85JFAOCM=",
 			"path": "github.com/inwecrypto/ethgo/erc20",
-			"revision": "57273e66112405a040abc22276874bfb4bab6308",
-			"revisionTime": "2018-04-25T06:21:04Z"
+			"revision": "5794222df97c52badd70ac7b88bf87c51fa08565",
+			"revisionTime": "2018-05-04T07:23:40Z"
 		},
 		{
-			"checksumSHA1": "JleNi9o+JxJs9kHGdIMRbYQm5g0=",
+			"checksumSHA1": "+2YNo09vqZOeeqOGzUra5pFQsOk=",
 			"path": "github.com/inwecrypto/ethgo/erc721",
-			"revision": "57273e66112405a040abc22276874bfb4bab6308",
-			"revisionTime": "2018-04-25T06:21:04Z"
+			"revision": "5794222df97c52badd70ac7b88bf87c51fa08565",
+			"revisionTime": "2018-05-04T07:23:40Z"
 		},
 		{
 			"checksumSHA1": "cXwu4k4NckaC+ddyxE861D8ANSk=",
@@ -71,6 +71,12 @@
 			"path": "github.com/inwecrypto/ethgo/rlp",
 			"revision": "a6c557be53b537dafb1c417dab68c58edf1e5f6b",
 			"revisionTime": "2018-03-08T09:10:26Z"
+		},
+		{
+			"checksumSHA1": "opwX+s/9NbNMwhStGg5J5DXzrCs=",
+			"path": "github.com/inwecrypto/ethgo/rpc",
+			"revision": "5794222df97c52badd70ac7b88bf87c51fa08565",
+			"revisionTime": "2018-05-04T07:23:40Z"
 		},
 		{
 			"checksumSHA1": "vw7Qlrkt3L2BCgIv34OK+aJFJU8=",
@@ -155,6 +161,13 @@
 			"path": "github.com/stretchr/testify/assert",
 			"revision": "87b1dfb5b2fa649f52695dd9eae19abe404a4308",
 			"revisionTime": "2017-12-31T12:27:32Z"
+		},
+		{
+			"checksumSHA1": "sDQATJ409++MGRlJR+tcFJoVFuA=",
+			"origin": "github.com/inwecrypto/ethgo/vendor/github.com/ybbus/jsonrpc",
+			"path": "github.com/ybbus/jsonrpc",
+			"revision": "5794222df97c52badd70ac7b88bf87c51fa08565",
+			"revisionTime": "2018-05-04T07:23:40Z"
 		},
 		{
 			"checksumSHA1": "1MGpGDQqnUoRpv7VEcQrXOBydXE=",
