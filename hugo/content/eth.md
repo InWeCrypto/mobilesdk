@@ -277,7 +277,7 @@ package com.inwecrypto.test
 public class App {
     public static void main(String args[]) {
         ethmobile.Wallet ethwallet = ethmobile.fromMnemonic("xxxxxx","zh_CN");
-        ethwallet.NewRedPacket("","","","","","","","","","")
+        ethwallet.NewRedPacket("","","","","","","","","","","")
     }
 }
 ```
@@ -289,6 +289,7 @@ Parameter | Type | Description
 redcontract | string | NFT红包合约地址
 nonce | string | 服务器获取的nonce
 erc20contract  | string | 要发红包的ERC20代币合约地址
+tokenId  | string | 红包的ID,需要事先生成的不重复的ID
 from | string | 转出地址
 amount | string | 发红包收取的手续费
 value | string | 红包中包含的ERC20代币总数
@@ -680,7 +681,7 @@ package com.inwecrypto.test
 public class App {
     public static void main(String args[]) {
         ethmobile.EthCall call = ethmobile.NewEthCall();
-        call.RedPacketDetail("","");
+        call.RedPacketOpenDetail("","");
     }
 }
 ```
