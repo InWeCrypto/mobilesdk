@@ -28,8 +28,8 @@ const (
 	DecentraLand_encodeTokenId = "encodeTokenId(int256,int256)"
 	DecentraLand_landData      = "landData(int256,int256)"
 	DecentraLand_landOf        = "landOf(address)"
-	DecentraLand_transferLand  = "transferLand(int,int,address)"
-	DecentraLand_ownerOfLand   = "ownerOfLand(int,int)"
+	DecentraLand_transferLand  = "transferLand(int256,int256,address)"
+	DecentraLand_ownerOfLand   = "ownerOfLand(int256,int256)"
 
 	// RedPacket
 	RedPacket_newRedPacket           = "newRedPacket(uint256,address,address,uint256,uint256,uint256)"
@@ -59,6 +59,7 @@ var (
 	Method_setAssetHolder      = SignABI(setAssetHolder)
 	Method_isAuthorized        = SignABI(isAuthorized)
 	Method_description         = SignABI(description)
+	Method_transferLand        = SignABI(DecentraLand_transferLand)
 )
 
 // SignABI sign abi string
