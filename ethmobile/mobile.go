@@ -33,6 +33,12 @@ func New() (*Wallet, error) {
 
 // FromPrivateKey .
 func FromPrivateKey(privateKey []byte) (*Wallet, error) {
+	defer func() {
+		if err := recover(); err != nil {
+			println("caught panic in FromPrivateKey()", err)
+		}
+	}()
+
 	key, err := keystore.KeyFromPrivateKey(privateKey)
 
 	if err != nil {
