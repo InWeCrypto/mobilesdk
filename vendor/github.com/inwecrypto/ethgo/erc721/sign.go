@@ -34,7 +34,6 @@ const (
 	// RedPacket
 	RedPacket_newRedPacket           = "newRedPacket(uint256,address,address,uint256,uint256,uint256)"
 	RedPacket_openMany               = "openMany(uint256,address[],uint256,bool)"
-	RedPacket_takeBack               = "takeBack(uint256)"
 	RedPacket_setTaxCost             = "setTaxCost(uint256,uint256)"
 	RedPacket_changeWallet           = "changeWallet(address)"
 	RedPacket_changeMaxCount         = "changeMaxCount(uint256)"
@@ -43,6 +42,9 @@ const (
 	RedPacket_sendEther              = "sendEther(uint256)"
 	RedPacket_getTaxCost             = "getTaxCost()"
 	RedPacket_maxCount               = "maxCount()"
+	RedPacket_addAdmin               = "addAdmin(address)"
+	RedPacket_delAdmin               = "delAdmin(address)"
+	RedPacket_changeGatherValue      = "changeGatherValue(uint256)"
 )
 
 // Method/Event id
@@ -260,8 +262,26 @@ func SendEther(value string) ([]byte, error) {
 	return hex.DecodeString(data)
 }
 
-func TakeBack(tokeId string) ([]byte, error) {
-	data := SignABI(RedPacket_takeBack) + packNumeric(tokeId, 32)
+func ChangeRedPacketGatherValue(value string) ([]byte, error) {
+	value = packNumeric(value, 32)
+
+	data := SignABI(RedPacket_changeGatherValue) + value
+
+	return hex.DecodeString(data)
+}
+
+func AddRedPacketAdmin(addr string) ([]byte, error) {
+	addr = packNumeric(addr, 32)
+
+	data := SignABI(RedPacket_addAdmin) + addr
+
+	return hex.DecodeString(data)
+}
+
+func DelRedPacketAdmin(addr string) ([]byte, error) {
+	addr = packNumeric(addr, 32)
+
+	data := SignABI(RedPacket_delAdmin) + addr
 
 	return hex.DecodeString(data)
 }

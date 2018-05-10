@@ -9,27 +9,29 @@ import (
 )
 
 const (
-	signBalanceOf    = "balanceOf(address)"
-	signTotalSupply  = "totalSupply()"
-	signTransfer     = "transfer(address,uint256)"
-	signTransferFrom = "transferFrom(address,address,uint256)"
-	signApprove      = "approve(address,uint256)"
-	signName         = "name()"
-	signSymbol       = "symbol()"
-	signAllowance    = "allowance(address,address)"
-	eventTransfer    = "Transfer(address,address,uint256)"
-	decimals         = "decimals()"
+	signBalanceOf         = "balanceOf(address)"
+	signTotalSupply       = "totalSupply()"
+	signTransfer          = "transfer(address,uint256)"
+	signTransferFrom      = "transferFrom(address,address,uint256)"
+	signApprove           = "approve(address,uint256)"
+	signName              = "name()"
+	signSymbol            = "symbol()"
+	signAllowance         = "allowance(address,address)"
+	eventTransfer         = "Transfer(address,address,uint256)"
+	decimals              = "decimals()"
+	signTransferOwnership = "transferOwnership(address)"
 )
 
 // Method/Event id
 var (
-	TransferID     = SignABI(signTransfer)
-	BalanceOfID    = SignABI(signBalanceOf)
-	Decimals       = SignABI(decimals)
-	TransferFromID = SignABI(signTransferFrom)
-	ApproveID      = SignABI(signApprove)
-	TotalSupplyID  = SignABI(signTotalSupply)
-	AllowanceID    = SignABI(signAllowance)
+	TransferID          = SignABI(signTransfer)
+	BalanceOfID         = SignABI(signBalanceOf)
+	Decimals            = SignABI(decimals)
+	TransferFromID      = SignABI(signTransferFrom)
+	ApproveID           = SignABI(signApprove)
+	TotalSupplyID       = SignABI(signTotalSupply)
+	AllowanceID         = SignABI(signAllowance)
+	TransferOwnershipID = SignABI(signTransferOwnership)
 )
 
 // SignABI sign abi string
@@ -117,6 +119,13 @@ func Allowance(from, to string) ([]byte, error) {
 	to = packNumeric(to, 32)
 
 	data := fmt.Sprintf("%s%s%s", AllowanceID, to, to)
+
+	return hex.DecodeString(data)
+}
+
+func TransferOwnership(to string) ([]byte, error) {
+	to = packNumeric(to, 32)
+	data := fmt.Sprintf("%s%s%s", TransferOwnershipID, to)
 
 	return hex.DecodeString(data)
 }
