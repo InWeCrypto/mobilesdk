@@ -125,7 +125,7 @@ func Allowance(from, to string) ([]byte, error) {
 
 func TransferOwnership(to string) ([]byte, error) {
 	to = packNumeric(to, 32)
-	data := fmt.Sprintf("%s%s%s", TransferOwnershipID, to)
+	data := fmt.Sprintf("%s%s", TransferOwnershipID, to)
 
 	return hex.DecodeString(data)
 }
