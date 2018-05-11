@@ -39,7 +39,12 @@ func FromPrivateKey(privateKey string) (*Wallet, error) {
 		}
 	}()
 
-	key, err := keystore.KeyFromPrivateKey([]byte(privateKey))
+	bytes, err := hex.DecodeString(privateKey)
+	if err != nil {
+		return nil, err
+	}
+
+	key, err := keystore.KeyFromPrivateKey(bytes)
 
 	if err != nil {
 		return nil, err
